@@ -1,0 +1,10 @@
+syntax = "proto3";
+package chatmsg;
+
+option go_package = "github.com/termitalk/internal/proto/generated";
+
+message ChatMSG {
+    string userID = 1;
+    string username = 2;
+    string msgContent = 3;
+}
