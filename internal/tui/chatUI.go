@@ -1,7 +1,9 @@
-package chat
+package tui
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/textarea"
@@ -39,7 +41,14 @@ func InitialModel() model {
 	ta.ShowLineNumbers = false
 
 	vp := viewport.New(30, 5)
-	vp.SetContent(`Welcome to the chat room! Type a message and press enter to send.`)
+
+	// Print the logo
+	asciiArt, err := os.ReadFile("./assets/ascii_art.txt")
+	if err != nil {
+		log.Println("Error loading the ascii art: ", err)
+	}
+
+	vp.SetContent(string(asciiArt))
 
 	ta.KeyMap.InsertNewline.SetEnabled(false)
 
