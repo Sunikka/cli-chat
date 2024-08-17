@@ -1,20 +1,39 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
+	"os"
 
-	wsHandler "github.com/Sunikka/termitalk/internal/handlers"
+	"github.com/Sunikka/termitalk/internal/routes"
+	wsHandler "github.com/Sunikka/termitalk/internal/routes"
+	"github.com/joho/godotenv"
 	"golang.org/x/net/websocket"
 )
 
-const PORT string = ":3000"
-
 func main() {
-	server := wsHandler.NewServer()
+	err := godotenv.Load("../../.env")
+	if err != nil {
+		log.Fatal(err)
+	}
+	serverPort := os.Getenv("SERVERPORT")
+	loginPort := os.Getenv("AUTH_PORT")
+	go startLoginService(loginPort)
 
+	startMainService(serverPort)
+}
+
+func startLoginService(port string) {
+	http.HandleFunc("/login", routes.HandleLogin)
+
+	log.Println("Login Service listening on port", port)
+	http.ListenAndServe(port, nil)
+}
+
+func startMainService(port string) {
+	server := wsHandler.NewServer()
 	http.Handle("/ws", websocket.Handler(server.HandleConn))
 
-	fmt.Println("Server listening on port", PORT)
-	http.ListenAndServe(PORT, nil)
+	log.Println("Server listening on port", port)
+	http.ListenAndServe(port, nil)
 }

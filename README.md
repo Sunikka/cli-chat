@@ -2,6 +2,7 @@
 
 A chat application in Go, where your terminal serves as the interface! The project is mainly for fun and learning. It's also a work in progress.
 
+![alt text](chat_view.png)
 ## Implemented
 
 - Bubbletea frontend UI base (Used the example from their github for starting the project out, so I can test my backend which I am focusing on first. I'm planning to customize the UI a lot later on)
@@ -27,4 +28,4 @@ A chat application in Go, where your terminal serves as the interface! The proje
 - Charmbracelet/bubbletea CLI frontend
 - Websockets + Protobuf communication
 
-![alt text](image.png)
+![alt text](login.png)

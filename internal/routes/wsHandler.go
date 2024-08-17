@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"sync"
 
 	"github.com/google/uuid"
 	"golang.org/x/net/websocket"
@@ -22,11 +23,13 @@ type message struct {
 
 type Server struct {
 	conns map[*websocket.Conn]bool
+	mutex *sync.Mutex
 }
 
 func NewServer() *Server {
 	return &Server{
 		conns: make(map[*websocket.Conn]bool),
+		mutex: &sync.Mutex{},
 	}
 }
 
@@ -40,9 +43,11 @@ func (s *Server) HandleConn(ws *websocket.Conn) {
 
 	fmt.Println("Client has been assigned with ID: ", client.ID)
 
-	s.conns[ws] = true
-
 	// TODO: Implement Mutex
+	s.mutex.Lock()
+	s.conns[ws] = true
+	s.mutex.Unlock()
+
 	s.readLoop(ws)
 }
 
