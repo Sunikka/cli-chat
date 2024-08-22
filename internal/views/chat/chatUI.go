@@ -116,7 +116,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m Model) View() string {
 	// Print the logo
-	asciiArt, err := os.ReadFile("../../assets/ascii_art.txt")
+	asciiArt, err := os.ReadFile("assets/ascii_art.txt")
 	if err != nil {
 		log.Println("Error loading the ascii art: ", err)
 	}

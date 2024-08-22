@@ -19,7 +19,7 @@ type wsMsg struct {
 }
 
 func main() {
-	err := godotenv.Load("../../.env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatal(err)
 	}
