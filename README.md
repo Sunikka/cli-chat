@@ -1,6 +1,6 @@
 # CLI Chat application in Go
 
-A chat application in Go, where your terminal serves as the interface! The project is mainly for fun and learning. NOTE: The project has been moving forward, but it has been split to multirepo architecture for maintainability reasons. You can find the project repositories from:
+A chat application in Go, where your terminal serves as the interface! The project is mainly for fun and learning. NOTE: The project has been moving forward, but it has been split to multirepo architecture for maintainability reasons. You can find the up to date project repositories from:
 - https://github.com/Sunikka/clich-client
 - https://github.com/Sunikka/clich-backend
 - https://github.com/Sunikka/clich-utilities
